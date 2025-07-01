@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="settings">
+            <h1>QR Code Generator</h1>
+            <p>Create custom QR codes with colors, logos, and more.</p>
+
+            <div class="form-group">
+                <label for="text-input">Text or URL</label>
+                <input type="text" id="text-input" placeholder="e.g., https://google.com">
+            </div>
+
+            <div class="color-options">
+                <div class="form-group color-group">
+                    <label for="color-dark">Foreground</label>
+                    <input type="color" id="color-dark" value="#000000">
+                </div>
+                <div class="form-group color-group">
+                    <label for="color-light">Background</label>
+                    <input type="color" id="color-light" value="#ffffff">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="size-slider">Size</label>
+                <div class="size-group">
+                    <input type="range" id="size-slider" min="200" max="800" step="50" value="300">
+                    <span id="size-text">300px</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="error-correction">Error Correction</label>
+                <select id="error-correction">
+                    <option value="L">Low (7%)</option>
+                    <option value="M" selected>Medium (15%)</option>
+                    <option value="Q">Quartile (25%)</option>
+                    <option value="H">High (30%)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="logo-input">Logo URL (Optional)</label>
+                <input type="text" id="logo-input" placeholder="Paste image URL here">
+            </div>
+            
+            <div class="button-group">
+                <button id="generate-btn" class="btn btn-primary">Generate QR Code</button>
+                <button id="download-btn" class="btn btn-secondary" disabled>Download</button>
+            </div>
+        </div>
+
+        <div class="result">
+            <div id="qr-code-container">
+                <div id="qr-code-placeholder">Your QR Code will appear here</div>
+                </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
