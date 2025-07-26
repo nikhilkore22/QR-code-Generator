@@ -7,65 +7,138 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <div class="container">
-        <div class="settings">
+        <header>
             <h1>QR Code Generator</h1>
-            <p>Create custom QR codes with colors, logos, and more.</p>
+        </header>
 
-            <div class="form-group">
-                <label for="text-input">Text or URL</label>
-                <input type="text" id="text-input" placeholder="e.g., https://google.com">
-            </div>
+        <div class="content-wrapper">
+            <div class="main-content">
+                <div class="input-section">
+                    <label for="qrDataType">Select QR Type:</label>
+                    <select id="qrDataType">
+                        <option value="text">Text</option>
+                        <option value="url">Website/URL</option>
+                        <option value="whatsapp">WhatsApp Message</option>
+                        <option value="wifi">Wi-Fi</option>
+                        <option value="email">Email</option>
+                        <option value="phone">Phone Number</option>
+                        <option value="sms">SMS Message</option>
+                    </select>
 
-            <div class="color-options">
-                <div class="form-group color-group">
-                    <label for="color-dark">Foreground</label>
-                    <input type="color" id="color-dark" value="#000000">
+                    <div id="textInput" class="data-input active">
+                        <label for="qrText">Enter Text:</label>
+                        <textarea id="qrText" placeholder="e.g., Hello World!"></textarea>
+                    </div>
+
+                    <div id="urlInput" class="data-input">
+                        <label for="qrUrl">Enter URL:</label>
+                        <input type="url" id="qrUrl" placeholder="e.g., https://www.example.com">
+                    </div>
+
+                    <div id="whatsappInput" class="data-input">
+                        <label for="whatsappNumber">WhatsApp Number (with country code):</label>
+                        <input type="text" id="whatsappNumber" placeholder="e.g., +919876543210">
+                        <label for="whatsappMessage">WhatsApp Message (optional):</label>
+                        <textarea id="whatsappMessage" placeholder="e.g., Hi there!"></textarea>
+                    </div>
+
+                    <div id="wifiInput" class="data-input">
+                        <label for="wifiSsid">SSID (Network Name):</label>
+                        <input type="text" id="wifiSsid" placeholder="e.g., MyHomeNetwork">
+                        <label for="wifiPassword">Password (optional):</label>
+                        <input type="password" id="wifiPassword" placeholder="e.g., MySecurePass">
+                        <label for="wifiEncryption">Encryption Type:</label>
+                        <select id="wifiEncryption">
+                            <option value="WPA">WPA/WPA2</option>
+                            <option value="WEP">WEP</option>
+                            <option value="nopass">None</option>
+                        </select>
+                    </div>
+
+                    <div id="emailInput" class="data-input">
+                        <label for="emailAddress">Email Address:</label>
+                        <input type="email" id="emailAddress" placeholder="e.g., info@example.com">
+                        <label for="emailSubject">Subject (optional):</label>
+                        <input type="text" id="emailSubject" placeholder="e.g., Inquiry">
+                        <label for="emailBody">Body (optional):</label>
+                        <textarea id="emailBody" placeholder="e.g., I would like to know more..."></textarea>
+                    </div>
+
+                    <div id="phoneInput" class="data-input">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <input type="tel" id="phoneNumber" placeholder="e.g., +919876543210">
+                    </div>
+
+                    <div id="smsInput" class="data-input">
+                        <label for="smsNumber">SMS Number:</label>
+                        <input type="tel" id="smsNumber" placeholder="e.g., +919876543210">
+                        <label for="smsMessage">SMS Message (optional):</label>
+                        <textarea id="smsMessage" placeholder="e.g., Hello!"></textarea>
+                    </div>
                 </div>
-                <div class="form-group color-group">
-                    <label for="color-light">Background</label>
-                    <input type="color" id="color-light" value="#ffffff">
+
+                <div class="options-section">
+                    <h3>QR Code Styling & Options</h3>
+                    <div class="option-row">
+                        <div class="option-group">
+                            <label for="foregroundColor">Foreground Color:</label>
+                            <input type="color" id="foregroundColor" value="#000000">
+                        </div>
+                        <div class="option-group">
+                            <label for="backgroundColor">Background Color:</label>
+                            <input type="color" id="backgroundColor" value="#ffffff">
+                        </div>
+                    </div>
+                    <div class="option-row">
+                        <div class="option-group">
+                            <label for="qrSize">Size:</label>
+                            <select id="qrSize">
+                                <option value="150">S (150px)</option>
+                                <option value="250" selected>M (250px)</option>
+                                <option value="350">L (350px)</option>
+                                <option value="450">XL (450px)</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="qrQuality">Error Correction:</label>
+                            <select id="qrQuality">
+                                <option value="L">Low (7%)</option>
+                                <option value="M" selected>Medium (15%)</option>
+                                <option value="Q">Quartile (25%)</option>
+                                <option value="H">High (30%)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="option-row">
+                         <div class="option-group">
+                            <label for="qrMargin">Margin (Quiet Zone):</label>
+                            <input type="number" id="qrMargin" value="4" min="0" max="10">
+                        </div>
+                    </div>
+                    <div class="option-group full-width">
+                        <label for="logoUploadInput">Logo Image (Upload or URL):</label>
+                        <input type="file" id="logoUploadInput" accept="image/*">
+                        <span class="or-separator">OR</span>
+                        <input type="url" id="logoUrlInput" placeholder="Enter Logo URL (e.g., https://your-logo.com/logo.png)">
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button id="generateQrBtn">Generate QR</button>
+                    <button id="downloadQrBtn">Download QR</button>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label for="size-slider">Size</label>
-                <div class="size-group">
-                    <input type="range" id="size-slider" min="200" max="800" step="50" value="300">
-                    <span id="size-text">300px</span>
-                </div>
+            <div class="preview-sidebar">
+                <h2>Live Preview</h2>
+                <div id="qrCodeContainer">
+                    </div>
             </div>
-            
-            <div class="form-group">
-                <label for="error-correction">Error Correction</label>
-                <select id="error-correction">
-                    <option value="L">Low (7%)</option>
-                    <option value="M" selected>Medium (15%)</option>
-                    <option value="Q">Quartile (25%)</option>
-                    <option value="H">High (30%)</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="logo-input">Logo URL (Optional)</label>
-                <input type="text" id="logo-input" placeholder="Paste image URL here">
-            </div>
-            
-            <div class="button-group">
-                <button id="generate-btn" class="btn btn-primary">Generate QR Code</button>
-                <button id="download-btn" class="btn btn-secondary" disabled>Download</button>
-            </div>
-        </div>
-
-        <div class="result">
-            <div id="qr-code-container">
-                <div id="qr-code-placeholder">Your QR Code will appear here</div>
-                </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/qrious@4.0.2/dist/qrious.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
